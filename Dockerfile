@@ -48,4 +48,5 @@ COPY ./src .
 EXPOSE 8000
 
 # Run the application.
-CMD python3 -m http.server 8000
+# CMD python3 -m http.server 8000
+CMD gunicorn main:app --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000

@@ -8,7 +8,13 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 services:
-  server:
+  app-web:
+    command:
+      - gunicorn
+      - main:app
+      - --worker-class
+      - uvicorn.workers.UvicornWorker
+      - --bind=0.0.0.0:8000
     build:
       dockerfile: Dockerfile
       context: .
@@ -19,6 +25,10 @@ services:
         - action: rebuild
           path: ./src
           target: /app
+        - action: rebuild
+          path: requirements.txt
+          target: requirements.txt
+
 
 
 # The commented out section below is an example of how to define a PostgreSQL

@@ -9,6 +9,11 @@
 # https://github.com/docker/awesome-compose
 services:
   app-web:
+    # command:
+      # - python
+      # - -m
+      # - http.server
+      # - "8000"
     command:
       - gunicorn
       - main:app

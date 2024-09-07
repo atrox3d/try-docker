@@ -14,6 +14,11 @@ services:
       # - -m
       # - http.server
       # - "8000"
+    environment:
+      # export has precedence over .env
+      MY_PW: ${MY_PW}
+    env_file:
+      - ./.env
     command:
       - gunicorn
       - main:app
@@ -28,11 +33,15 @@ services:
     develop:
       watch:
         - action: rebuild
-          path: ./src
-          target: /app
-        - action: rebuild
-          path: requirements.txt
-          target: requirements.txt
+          # path: ./src
+          # target: /app
+        # - action: rebuild
+          # path: requirements.txt
+          # target: requirements.txt
+        # - action: rebuild
+          # path: .env
+          path: .
+
 
 
 
